@@ -31,6 +31,8 @@ while running:
             result = "Invalid operation"
 
         print(f"Result: {result}")
+        with open("history.txt", "a") as file:
+            file.write(f"{number1} {operation} {number2} = {result}\n ")
 
 
     except ValueError:
