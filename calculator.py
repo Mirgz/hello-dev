@@ -1,9 +1,10 @@
-def add_numbers(a, b):
-    return a + b
+from math_operations import (
+    add_numbers, 
+    subtract_numbers,
+    multiply_numbers,
+    divide_numbers
 
-def subtract_numbers(a, b):
-    return a - b
-
+)
 
 print("Simple Calculator")
 
@@ -11,23 +12,36 @@ running = True
 
 while running:
 
-    number1 = float(input("Enter first number: "))
-    number2 = float(input("Enter second number: "))
+    try:
 
-    operation = input("Choose operation (+ or -): ")
+        number1 = float(input("Enter first number: "))
+        number2 = float(input("Enter second number: "))
 
-    if operation == "+":
-        result = add_numbers(number1, number2)
-    elif operation == "-":
-        result = subtract_numbers(number1, number2)
-    else:
-        result = "Invalid operation"
+        operation = input("Choose operation (+, -, * or /): ")
 
-    print(f"Result: {result}")
+        if operation == "+":
+            result = add_numbers(number1, number2)
+        elif operation == "-":
+            result = subtract_numbers(number1, number2)
+        elif operation == "*":
+            result = multiply_numbers(number1, number2)
+        elif operation == "/":
+            result = divide_numbers(number1, number2)
+        else:
+            result = "Invalid operation"
+
+        print(f"Result: {result}")
+
+
+    except ValueError:
+        print("Invalid input. Please enter numbers only.")
+
+    except ZeroDivisionError:
+        print("You can not divide by zero")
 
     continue_choice = input("Continue? (y/n): ")
 
     if continue_choice == "n":
-        running = False
+            running = False
 
 print("Calculator closed")
