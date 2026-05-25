@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+class Numbers(BaseModel):
+    a: float
+    b: float
+
 class CalculationResult(BaseModel):
     result: float
     operation: str
@@ -28,3 +32,9 @@ def add(a: int, b: int):
 @app.get("/subtract")
 def subtract(a: int, b:int):
     return {"result": a - b}
+
+@app.post("/multiply")
+def multiply(numbers: Numbers):
+    return {
+        "result": numbers.a * numbers.b
+    }
